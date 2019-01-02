@@ -5,9 +5,14 @@ import './App.css';
 // explicitly bind dispatchToActions
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateUser } from './actions/user-actions';
+import { updateUser, apiRequest } from './actions/user-actions';
 
 class App extends Component {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.onApiRequest();
+    }, 1500);
+  }
   onUpdateUser = (e) => {
     this.props.onUpdateUser(e.target.value);
   };
@@ -46,27 +51,14 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapActionsToProps = (dispatch, props) => {
-  return bindActionCreators(
-    {
-      onUpdateUser: updateUser
-    },
-    dispatch
-  );
-};
-
-// propsFromState: returned from mapStateToProps
-// propsFromDispatch: returned from mapActionToProps
-// ownProps: passed in props
-const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
-  console.log(propsFromState, propsFromDispatch, ownProps);
-  return {};
+const mapActionsToProps = {
+  onUpdateUser: updateUser,
+  onApiRequest: apiRequest
 };
 
 export default connect(
   mapStateToProps,
-  mapActionsToProps,
-  mergeProps
+  mapActionsToProps
 )(App);
 
 // With mapActionsToProps, we don't have to use dispatch
