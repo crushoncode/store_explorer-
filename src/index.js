@@ -6,7 +6,10 @@ import * as serviceWorker from './serviceWorker';
 
 import { createStore } from 'redux';
 
-function reducer() {
+function reducer(state, action) {
+  if (action.type === 'changeState') {
+    return action.payload.newState;
+  }
   return 'State';
 }
 
@@ -23,6 +26,9 @@ const action = {
 };
 
 store.dispatch(action);
+console.log(store.getState());
+
+// Update the store - reducer
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
