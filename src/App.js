@@ -55,9 +55,18 @@ const mapActionsToProps = (dispatch, props) => {
   );
 };
 
+// propsFromState: returned from mapStateToProps
+// propsFromDispatch: returned from mapActionToProps
+// ownProps: passed in props
+const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
+  console.log(propsFromState, propsFromDispatch, ownProps);
+  return {};
+};
+
 export default connect(
   mapStateToProps,
-  mapActionsToProps
+  mapActionsToProps,
+  mergeProps
 )(App);
 
 // With mapActionsToProps, we don't have to use dispatch

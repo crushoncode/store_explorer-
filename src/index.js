@@ -34,6 +34,7 @@ const updateUserAction = {
 
 store.dispatch(updateUserAction);
 
+// passed in props: aRandomProps :)
 ReactDOM.render(
   <Provider store={store}>
     <App aRandomProps='whatever' />
