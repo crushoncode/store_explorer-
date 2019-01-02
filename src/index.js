@@ -11,6 +11,10 @@ function productsReducer(state = [], action) {
 }
 
 function userReducer(state = '', action) {
+  switch (action.type) {
+    case 'updateUser':
+      return action.payload;
+  }
   return state;
 }
 
@@ -19,14 +23,25 @@ const allReducers = combineReducers({
   user: userReducer
 });
 
-const store = createStore(allReducers, {
-  products: [{ name: 'iPhone' }],
-  user: 'Serina'
-});
+const store = createStore(
+  allReducers,
+  {
+    products: [{ name: 'iPhone' }],
+    user: 'Serina'
+  },
+  window.devToolsExtension && window.devToolsExtension()
+);
 
 console.log(store.getState());
 
-// Update the store - reducer
+const updateUserAction = {
+  type: 'updateUser',
+  payload: {
+    user: 'Clair'
+  }
+};
+
+store.dispatch(updateUserAction);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
