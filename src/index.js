@@ -4,6 +4,26 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createStore } from 'redux';
+
+function reducer() {
+  return 'State';
+}
+
+const store = createStore(reducer);
+console.log(store.getState());
+
+// Dispatch an action
+
+const action = {
+  type: 'changeState',
+  payload: {
+    newState: 'New state'
+  }
+};
+
+store.dispatch(action);
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
